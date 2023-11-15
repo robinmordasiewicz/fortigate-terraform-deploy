@@ -155,7 +155,7 @@ resource "google_compute_route" "internal" {
   name        = "internal-route-${random_string.random_name_post.result}"
   dest_range  = "0.0.0.0/0"
   network     = google_compute_network.vpc_network2.name
-  next_hop_ip = data.google_compute_instance.default.network_interface.1.network_ip
+  next_hop_ip = data.google_compute_instance.default.network_interface[1].network_ip
   priority    = 100
   depends_on  = [google_compute_instance.default]
 }

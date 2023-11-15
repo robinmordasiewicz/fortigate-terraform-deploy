@@ -22,7 +22,7 @@ resource "azurerm_virtual_machine" "customfgtvm" {
 
 
   storage_image_reference {
-    id = var.custom ? element(azurerm_image.custom.*.id, 0) : null
+    id = var.custom ? element(azurerm_image.custom[*].id, 0) : null
   }
 
   storage_os_disk {
@@ -124,7 +124,7 @@ resource "azurerm_virtual_machine" "fgtvm" {
 data "template_file" "fgtvm" {
   template = "${file("${var.bootstrap-fgtvm}")}"
   vars = {
-    type            = "${var.license_type}"
-    license_file    = "${var.license}"
+    type         = "${var.license_type}"
+    license_file = "${var.license}"
   }
 }

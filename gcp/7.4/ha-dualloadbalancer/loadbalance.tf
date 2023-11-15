@@ -364,8 +364,8 @@ resource "google_compute_instance_group" "umig_active" {
   project = var.project
   zone    = var.zone
   instances = matchkeys(
-    google_compute_instance_from_template.active_fgt_instance.*.self_link,
-    google_compute_instance_from_template.active_fgt_instance.*.zone,
+    google_compute_instance_from_template.active_fgt_instance[*].self_link,
+    google_compute_instance_from_template.active_fgt_instance[*].zone,
     [var.zone],
   )
 }
@@ -375,8 +375,8 @@ resource "google_compute_instance_group" "umig_passive" {
   project = var.project
   zone    = var.zone
   instances = matchkeys(
-    google_compute_instance_from_template.passive_fgt_instance.*.self_link,
-    google_compute_instance_from_template.passive_fgt_instance.*.zone,
+    google_compute_instance_from_template.passive_fgt_instance[*].self_link,
+    google_compute_instance_from_template.passive_fgt_instance[*].zone,
     [var.zone],
   )
 }

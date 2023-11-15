@@ -106,10 +106,10 @@ data "template_file" "setupfgt" {
 
 resource "alicloud_instance" "Fortigate" {
   depends_on                 = [alicloud_ecs_network_interface.FortiGateInterface]
-  availability_zone          = data.alicloud_zones.default.zones.0.id
-  security_groups            = alicloud_security_group.SecGroup.*.id
-  image_id                   = length(var.instance_ami) > 1 ? var.instance_ami : data.alicloud_images.ecs_image.images.0.id
-  instance_type              = data.alicloud_instance_types.types_ds.instance_types.0.id
+  availability_zone          = data.alicloud_zones.default.zones[0].id
+  security_groups            = alicloud_security_group.SecGroup[*].id
+  image_id                   = length(var.instance_ami) > 1 ? var.instance_ami : data.alicloud_images.ecs_image.images[0].id
+  instance_type              = data.alicloud_instance_types.types_ds.instance_types[0].id
   system_disk_category       = "cloud_efficiency"
   instance_name              = "FortiGate-${random_string.random_name_post.result}"
   vswitch_id                 = alicloud_vswitch.vsw_external.id

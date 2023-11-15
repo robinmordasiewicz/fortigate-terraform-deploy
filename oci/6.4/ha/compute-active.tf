@@ -56,7 +56,7 @@ resource "oci_core_vnic_attachment" "vnic_attach_public" {
 // floating ip for public ip
 resource "oci_core_private_ip" "public_private_ip" {
   depends_on = [oci_core_vnic_attachment.vnic_attach_public]
-  vnic_id    = element(oci_core_vnic_attachment.vnic_attach_public.*.vnic_id, 0)
+  vnic_id    = element(oci_core_vnic_attachment.vnic_attach_public[*].vnic_id, 0)
 
   display_name   = "public_ip"
   hostname_label = "public"

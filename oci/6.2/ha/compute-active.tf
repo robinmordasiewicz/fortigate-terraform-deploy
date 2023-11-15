@@ -52,7 +52,7 @@ resource "oci_core_vnic_attachment" "vnic_attach_public" {
 // floating ip for public ip
 resource "oci_core_private_ip" "public_private_ip" {
   #Get Primary VNIC id
-  vnic_id = "${element(oci_core_vnic_attachment.vnic_attach_public.*.vnic_id, 0)}"
+  vnic_id = "${element(oci_core_vnic_attachment.vnic_attach_public[*].vnic_id, 0)}"
 
   #Optional
   display_name   = "public_ip"

@@ -27,8 +27,8 @@ resource "oci_core_instance" "activevm" {
   }
 
   source_details {
-    source_type = "image"
-    source_id   = local.mp_listing_resource_id // marketplace listing
+    source_type             = "image"
+    source_id               = local.mp_listing_resource_id // marketplace listing
     boot_volume_size_in_gbs = "50"
   }
 
@@ -78,7 +78,7 @@ resource "oci_core_vnic_attachment" "vnic_attach_public" {
 }
 data "oci_core_private_ips" "public_private_ip" {
   //ip_address = var.public_private_ip_active
-  vnic_id   = element(oci_core_vnic_attachment.vnic_attach_public.*.vnic_id, 0)
+  vnic_id   = element(oci_core_vnic_attachment.vnic_attach_public[*].vnic_id, 0)
   subnet_id = oci_core_subnet.public_subnet.id
 }
 
@@ -109,7 +109,7 @@ resource "oci_core_vnic_attachment" "vnic_attach_trust" {
 }
 
 data "oci_core_private_ips" "fw_private_ip" {
-  vnic_id   = element(oci_core_vnic_attachment.vnic_attach_trust.*.vnic_id, 0)
+  vnic_id   = element(oci_core_vnic_attachment.vnic_attach_trust[*].vnic_id, 0)
   subnet_id = oci_core_subnet.trust_subnet.id
 }
 

@@ -13,7 +13,7 @@ resource "azurerm_virtual_machine" "custompassivefgtvm" {
   delete_data_disks_on_termination = true
 
   storage_image_reference {
-    id = var.custom ? element(azurerm_image.custom.*.id, 0) : null
+    id = var.custom ? element(azurerm_image.custom[*].id, 0) : null
   }
 
   storage_os_disk {
@@ -95,7 +95,7 @@ resource "azurerm_virtual_machine" "passivefgtvm" {
     offer     = var.custom ? null : var.fgtoffer
     sku       = var.license_type == "byol" ? var.fgtsku["byol"] : var.fgtsku["payg"]
     version   = var.custom ? null : var.fgtversion
-    id        = var.custom ? element(azurerm_image.custom.*.id, 0) : null
+    id        = var.custom ? element(azurerm_image.custom[*].id, 0) : null
   }
 
   plan {

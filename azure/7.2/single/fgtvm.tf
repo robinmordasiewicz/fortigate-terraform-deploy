@@ -24,7 +24,7 @@ resource "azurerm_virtual_machine" "customfgtvm" {
   delete_data_disks_on_termination = true
 
   storage_image_reference {
-    id = var.custom ? element(azurerm_image.custom.*.id, 0) : null
+    id = var.custom ? element(azurerm_image.custom[*].id, 0) : null
   }
 
   storage_os_disk {

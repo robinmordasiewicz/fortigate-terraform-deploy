@@ -22,7 +22,7 @@ resource "azurerm_virtual_machine" "customfgtvm" {
 
 
   storage_image_reference {
-    id = var.custom ? element(azurerm_image.custom.*.id, 0) : null
+    id = var.custom ? element(azurerm_image.custom[*].id, 0) : null
   }
 
   storage_os_disk {

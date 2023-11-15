@@ -13,11 +13,11 @@ output "Default_Password" {
 
 // Active Unit Mgmt IP
 output "FGTActiveMGMTPublicIP" {
-  value = oci_core_instance.activevm.*.public_ip
+  value = oci_core_instance.activevm[*].public_ip
 }
 
 // Passive Unit Mgmt IP
 
 output "FGTPassiveMGMTPublicIP" {
-  value = oci_core_instance.passivevm.*.public_ip
+  value = oci_core_instance.passivevm[*].public_ip
 }
