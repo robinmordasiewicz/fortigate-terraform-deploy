@@ -5,7 +5,7 @@
     "GH_PAGER": ""
   },
   "runArgs": [
-    "--hostname=amerintlxperts"
+    "--hostname=devcontainer"
   ]
 }
 
