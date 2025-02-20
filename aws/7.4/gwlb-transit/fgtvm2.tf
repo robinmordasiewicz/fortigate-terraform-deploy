@@ -33,7 +33,7 @@ data "aws_network_interface" "vpcendpointipaz2" {
   //  Using AZ1's endpoint ip
   filter {
     name   = "availability-zone"
-    values = ["${var.az1}"]
+    values = ["${var.az2}"]
   }
 }
 
@@ -58,7 +58,8 @@ resource "aws_instance" "fgtvm2" {
   key_name          = var.keyname
   user_data = chomp(templatefile("${var.bootstrap-fgtvm2}", {
     type         = "${var.license_type}"
-    license_file = "${var.license2}"
+    license_file = var.licenses[1]
+    format       = "${var.license_format}"
     adminsport   = "${var.adminsport}"
     cidr         = "${var.privatecidraz1}"
     gateway      = cidrhost(var.privatecidraz2, 1)
@@ -66,14 +67,14 @@ resource "aws_instance" "fgtvm2" {
   }))
 
   root_block_device {
-    volume_type = "standard"
+    volume_type = "gp2"
     volume_size = "2"
   }
 
   ebs_block_device {
     device_name = "/dev/sdb"
     volume_size = "30"
-    volume_type = "standard"
+    volume_type = "gp2"
   }
 
   network_interface {

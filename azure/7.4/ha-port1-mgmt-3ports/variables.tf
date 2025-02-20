@@ -45,6 +45,18 @@ variable "license_type" {
   default = "payg"
 }
 
+// To accept marketplace agreement
+// Default is false
+variable "accept" {
+  default = "false"
+}
+
+// BYOL License format to create FortiGate-VM
+// Provide the license type for FortiGate-VM Instances, either token or file.
+variable "license_format" {
+  default = "token"
+}
+
 // enable accelerate network, either true or false, default is false
 // Make the the instance choosed supports accelerated networking.
 // Check: https://docs.microsoft.com/en-us/azure/virtual-network/accelerated-networking-overview#supported-vm-instances
@@ -75,7 +87,7 @@ variable "fgtsku" {
 // FOS version
 variable "fgtversion" {
   type    = string
-  default = "7.4.1"
+  default = "7.4.6"
 }
 
 variable "adminusername" {

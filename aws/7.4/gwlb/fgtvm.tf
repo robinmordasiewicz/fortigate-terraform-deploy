@@ -53,19 +53,20 @@ resource "aws_instance" "fgtvm" {
   user_data = templatefile("${var.bootstrap-fgtvm}", {
     type         = "${var.license_type}"
     license_file = "${var.license}"
+    format       = "${var.license_format}"
     adminsport   = "${var.adminsport}"
     endpointip   = "${data.aws_network_interface.vpcendpointip.private_ip}"
   })
 
   root_block_device {
-    volume_type = "standard"
+    volume_type = "gp2"
     volume_size = "2"
   }
 
   ebs_block_device {
     device_name = "/dev/sdb"
     volume_size = "30"
-    volume_type = "standard"
+    volume_type = "gp2"
   }
 
   network_interface {

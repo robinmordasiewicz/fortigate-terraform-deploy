@@ -52,7 +52,8 @@ resource "aws_instance" "fgtvm2" {
   key_name          = var.keyname
   user_data = chomp(templatefile("${var.bootstrap-fgtvm2}", {
     type            = "${var.license_type}"
-    license_file    = "${var.license}"
+    license_file    = var.licenses[1]
+    format          = "${var.license_format}"
     adminsport      = "${var.adminsport}"
     port1_ip        = "${var.fgt2port1ip[0]}"
     port1_mask      = "${cidrnetmask(var.publiccidraz2)}"
@@ -69,14 +70,14 @@ resource "aws_instance" "fgtvm2" {
   iam_instance_profile = var.iam
 
   root_block_device {
-    volume_type = "standard"
+    volume_type = "gp2"
     volume_size = "2"
   }
 
   ebs_block_device {
     device_name = "/dev/sdb"
     volume_size = "30"
-    volume_type = "standard"
+    volume_type = "gp2"
   }
 
   network_interface {

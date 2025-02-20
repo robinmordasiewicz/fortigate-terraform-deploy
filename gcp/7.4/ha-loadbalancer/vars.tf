@@ -23,15 +23,16 @@ variable "token" {
   type    = string
   default = "<gcp oauth access token>"
 }
+
 # FortiGate Image name
-# 7.4.1 x86 payg is projects/fortigcp-project-001/global/images/fortinet-fgtondemand-741-20230905-001-w-license
-# 7.4.1 x86 byol is projects/fortigcp-project-001/global/images/fortinet-fgt-741-20230905-001-w-license
-# 7.4.1 arm payg is projects/fortigcp-project-001/global/images/fortinet-fgtondemand-arm64-741-20230905-001-w-license
-# 7.4.1 arm byol is projects/fortigcp-project-001/global/images/fortinet-fgt-arm64-741-20230905-001-w-license
+# 7.4.7 x86 payg is projects/fortigcp-project-001/global/images/fortinet-fgtondemand-747-20250123-001-w-license 
+# 7.4.7 x86 byol is projects/fortigcp-project-001/global/images/fortinet-fgt-747-20250123-001-w-license
+# 7.4.7 arm payg is projects/fortigcp-project-001/global/images/fortinet-fgtondemand-arm64-747-20250123-001-w-license
+# 7.4.7 arm byol is projects/fortigcp-project-001/global/images/fortinet-fgt-arm64-747-20250123-001-w-license
 
 variable "image" {
   type    = string
-  default = "projects/fortigcp-project-001/global/images/fortinet-fgtondemand-741-20230905-001-w-license"
+  default = "projects/fortigcp-project-001/global/images/fortinet-fgtondemand-747-20250123-001-w-license"
 }
 
 # GCP VNIC type

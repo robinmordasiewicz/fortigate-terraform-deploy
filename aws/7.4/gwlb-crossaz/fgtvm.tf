@@ -111,7 +111,7 @@ resource "aws_instance" "fgtvm" {
   key_name          = var.keyname
   user_data = templatefile("${var.bootstrap-fgtvm}", {
     type         = "${var.license_type}"
-    license_file = "${var.license}"
+    license_file = var.licenses[0]
     adminsport   = "${var.adminsport}"
     dst          = var.privatecidraz2
     gateway      = cidrhost(var.privatecidraz1, 1)
@@ -120,14 +120,14 @@ resource "aws_instance" "fgtvm" {
   })
 
   root_block_device {
-    volume_type = "standard"
+    volume_type = "gp2"
     volume_size = "2"
   }
 
   ebs_block_device {
     device_name = "/dev/sdb"
     volume_size = "30"
-    volume_type = "standard"
+    volume_type = "gp2"
   }
 
   network_interface {
@@ -154,7 +154,8 @@ resource "aws_instance" "fgtvm2" {
   key_name          = var.keyname
   user_data = templatefile("${var.bootstrap-fgtvm}", {
     type         = "${var.license_type}"
-    license_file = "${var.license2}"
+    license_file = var.licenses[1]
+    format       = "${var.license_format}"
     adminsport   = "${var.adminsport}"
     dst          = var.privatecidraz1
     gateway      = cidrhost(var.privatecidraz2, 1)
@@ -163,14 +164,14 @@ resource "aws_instance" "fgtvm2" {
   })
 
   root_block_device {
-    volume_type = "standard"
+    volume_type = "gp2"
     volume_size = "2"
   }
 
   ebs_block_device {
     device_name = "/dev/sdb"
     volume_size = "30"
-    volume_type = "standard"
+    volume_type = "gp2"
   }
 
   network_interface {

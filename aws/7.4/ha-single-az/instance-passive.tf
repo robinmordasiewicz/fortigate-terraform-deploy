@@ -64,7 +64,8 @@ resource "aws_instance" "fgtpassive" {
   key_name          = var.keyname
   user_data = templatefile("${var.bootstrap-passive}", {
     type            = "${var.license_type}"
-    license_file    = "${var.license2}"
+    license_file    = var.licenses[1]
+    format          = "${var.license_format}"
     port1_ip        = "${var.passiveport1}"
     port1_mask      = "${var.passiveport1mask}"
     port2_ip        = "${var.passiveport2}"
@@ -81,14 +82,14 @@ resource "aws_instance" "fgtpassive" {
   iam_instance_profile = var.iam
 
   root_block_device {
-    volume_type = "standard"
+    volume_type = "gp2"
     volume_size = "2"
   }
 
   ebs_block_device {
     device_name = "/dev/sdb"
     volume_size = "30"
-    volume_type = "standard"
+    volume_type = "gp2"
   }
 
   network_interface {

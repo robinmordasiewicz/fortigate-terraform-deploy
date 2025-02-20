@@ -33,7 +33,7 @@ data "aws_network_interface" "vpcendpointipaz2" {
   //  Using AZ1's endpoint ip
   filter {
     name   = "availability-zone"
-    values = ["${var.az1}"]
+    values = ["${var.az2}"]
   }
 }
 
@@ -59,6 +59,7 @@ resource "aws_instance" "fgtvm2" {
   user_data = templatefile("${var.bootstrap-fgtvm2}", {
     type         = "${var.license_type}"
     license_file = "${var.license2}"
+    format       = "${var.license_format}"
     adminsport   = "${var.adminsport}"
     cidr         = "${var.privatecidraz1}"
     gateway      = cidrhost(var.privatecidraz2, 1)

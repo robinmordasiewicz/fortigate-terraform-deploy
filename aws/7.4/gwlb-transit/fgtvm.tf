@@ -57,7 +57,8 @@ resource "aws_instance" "fgtvm" {
   key_name          = var.keyname
   user_data = chomp(templatefile("${var.bootstrap-fgtvm}", {
     type         = "${var.license_type}"
-    license_file = "${var.license}"
+    license_file = var.licenses[0]
+    format       = "${var.license_format}"
     adminsport   = "${var.adminsport}"
     cidr         = "${var.privatecidraz2}"
     gateway      = cidrhost(var.privatecidraz1, 1)
@@ -65,14 +66,14 @@ resource "aws_instance" "fgtvm" {
   }))
 
   root_block_device {
-    volume_type = "standard"
+    volume_type = "gp2"
     volume_size = "2"
   }
 
   ebs_block_device {
     device_name = "/dev/sdb"
     volume_size = "30"
-    volume_type = "standard"
+    volume_type = "gp2"
   }
 
   network_interface {

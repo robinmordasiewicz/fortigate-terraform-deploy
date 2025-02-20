@@ -31,10 +31,22 @@ variable "custom_image_resource_group_name" {
   default = "<custom image resource group>"
 }
 
+// To accept marketplace agreement
+// Default is false
+variable "accept" {
+  default = "false"
+}
+
 // License Type to create FortiGate-VM
 // Provide the license type for FortiGate-VM Instances, either byol or payg.
 variable "license_type" {
   default = "payg"
+}
+
+// BYOL License format to create FortiGate-VM
+// Provide the license type for FortiGate-VM Instances, either token or file.
+variable "license_format" {
+  default = "token"
 }
 
 variable "publisher" {
@@ -59,7 +71,7 @@ variable "fgtsku" {
 
 variable "fgtversion" {
   type    = string
-  default = "7.4.1"
+  default = "7.4.6"
 }
 
 variable "adminusername" {

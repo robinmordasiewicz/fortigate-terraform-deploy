@@ -45,6 +45,18 @@ variable "license_type" {
   default = "payg"
 }
 
+// To accept marketplace agreement
+// Default is false
+variable "accept" {
+  default = "false"
+}
+
+// BYOL License format to create FortiGate-VM
+// Provide the license type for FortiGate-VM Instances, either token or file.
+variable "license_format" {
+  default = "token"
+}
+
 variable "publisher" {
   type    = string
   default = "fortinet"
@@ -68,7 +80,7 @@ variable "fgtsku" {
 // FOS version
 variable "fgtversion" {
   type    = string
-  default = "7.4.1"
+  default = "7.4.6"
 }
 
 variable "adminusername" {
