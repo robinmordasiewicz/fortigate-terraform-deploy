@@ -1,5 +1,7 @@
 # Azure Instructions
 
+Create an auto.tfvars config file
+
 ```bash
 az login --use-device-code 
 az account show -o jsonc
