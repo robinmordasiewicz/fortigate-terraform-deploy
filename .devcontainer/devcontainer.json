@@ -1,0 +1,11 @@
+{
+  "image": "ghcr.io/amerintlxperts/devcontainer:latest",
+  "initializeCommand": "docker pull ghcr.io/amerintlxperts/devcontainer:latest",
+  "containerEnv": {
+    "GH_PAGER": ""
+  },
+  "runArgs": [
+    "--hostname=amerintlxperts"
+  ]
+}
+
