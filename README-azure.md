@@ -4,8 +4,6 @@ Create an auto.tfvars config file
 
 ```bash
 az login --use-device-code 
-az account show -o jsonc
-az account show --query id -o tsv
-az account show --query tenantId -o tsv
+az account list --query "[?name=='CSE-SE-DevOps'].id" --output tsv
+az ad sp create-for-rbac --role Contributor --scopes /subscriptions/{subscription-id} --json-auth
 ```
-
