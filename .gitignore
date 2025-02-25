@@ -83,3 +83,4 @@ tmp
 var/
 venv
 venv/
+.aider*
