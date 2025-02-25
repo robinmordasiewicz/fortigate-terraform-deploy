@@ -1,20 +1,16 @@
 # Terraform Deployment Scripts
-## Introduction
-This project includes a set of terraform scripts for getting started with different cloud-providers with Fortinet.
 
-* [AWS](https://github.com/fortinet/fortigate-terraform-deploy/tree/main/aws)
-* [Azure](https://github.com/fortinet/fortigate-terraform-deploy/tree/main/azure)
-* [GCP](https://github.com/fortinet/fortigate-terraform-deploy/tree/main/gcp)
-* [IBM-Cloud](https://github.com/fortinet/fortigate-terraform-deploy/tree/main/ibm)
-* [OCI](https://github.com/fortinet/fortigate-terraform-deploy/tree/main/oci)
-* [Openstack](https://github.com/fortinet/fortigate-terraform-deploy/tree/main/openstack)
+This repository contains a set of Terraform scripts to deploy FortiGate VMs on different cloud providers. The scripts are designed to deploy a single FortiGate VM in a standalone VPC/VNet. The scripts can be easily modified to deploy multiple FortiGate VMs in an HA configuration.
+
+## Azure
+
+```bash
+az account list --query "[?name=='<YourSubscriptionName'].id" --output tsv
+az ad sp create-for-rbac --role Contributor --scopes /subscriptions/<subscription id output from previous command> --json-auth
+```
 
 ## Support
+
 Fortinet-provided scripts in this and other GitHub projects do not fall under the regular Fortinet technical support scope and are not supported by FortiCare Support Services.
 For direct issues, please refer to the [Issues](https://github.com/fortinet/fortigate-terraform-deploy/issues) tab of this GitHub project.
 For other questions related to this project, contact [github@fortinet.com](mailto:github@fortinet.com).
-
-## License
-[License](https://github.com/fortinet/fortigate-terraform-deploy/blob/master/LICENSE) © Fortinet Technologies. All rights reserved.
-
-
