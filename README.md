@@ -5,7 +5,7 @@ This repository contains a set of Terraform scripts to deploy FortiGate VMs on d
 ## Azure
 
 ```bash
-az account list --query "[?name=='<YourSubscriptionName'].id" --output tsv
+az account list --query "[?name=='<YourSubscriptionName>'].id" --output tsv
 az ad sp create-for-rbac --role Contributor --scopes /subscriptions/<subscription id output from previous command> --json-auth
 ```
 
